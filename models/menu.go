@@ -1,9 +1,5 @@
 package models
 
-import (
-	"time"
-)
-
 type Menu struct {
 	Id          int64     `gorm:"primary_key"`
 	NamaMakanan string    `gorm:"type:varchar(100)" json:"nama_makanan"`
@@ -13,9 +9,7 @@ type Menu struct {
 	Foto        string    `gorm:"type:varchar(255)" json:"foto"`
 	Deskripsi   string    `json:"deskripsi"`
 	StanId      int64     `json:"stan_id"`
-	Stan        Stan      `gorm:"foreign_key:JenisId;references:Id;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
-	CreatedAt   time.Time `gorm:"type:timestamp;default:current_timestamp"`
-	UpdatedAt   time.Time `gorm:"type:timestamp;default:current_timestamp on update current_timestamp"`
+	Stan        Stan      `gorm:"foreign_key:StanId;references:Id;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 }
 
 type Jenis struct {

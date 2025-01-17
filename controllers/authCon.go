@@ -35,7 +35,7 @@ func Register(c *gin.Context) {
 	user := models.User{
 		Username: input.Username,
 		Password: string(hashedPassword),
-		RoleId:   input.RoleId, // You can modify this based on the user role
+		RoleId:   input.RoleId,
 	}
 
 	// Save the user in the database

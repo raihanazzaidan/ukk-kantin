@@ -2,7 +2,7 @@ package main
 
 import (
 	"backend_golang/controllers"
-	"backend_golang/middlewares"
+	middleware "backend_golang/middlewares"
 	"backend_golang/setup"
 
 	"github.com/gin-gonic/gin"
@@ -16,7 +16,8 @@ func main() {
 	setup.ConnectDatabase()
 
 	// APIs that doesn't need middleware
-	router.POST("/register", controllers.Register)
+	router.POST("/siswa/register", controllers.RegisterSiswa)
+	router.POST("/stan/register", controllers.RegisterStan)
 	router.POST("/login", controllers.Login)
 
 	// APIs that need middleware
@@ -61,9 +62,13 @@ func main() {
 	protected.POST("/diskon/add", controllers.AddDiskon)
 	protected.PUT("/diskon/update/:id", controllers.UpdateDiskon)
 	protected.DELETE("/diskon/delete/:id", controllers.DeleteDiskon)
+	protected.POST("/menudiskon/add", controllers.AddDiskonToMenu)
 
-
+	// Transaksi API
+	protected.POST("/transaksi-with-detail", controllers.CreateTransaksiWithDetail)
+	protected.PUT("/status/update/:id", controllers.UpdateStatusTransaksi)
+	protected.GET("/print/:id", controllers.PrintNota)
 
 	// Port
-	router.Run(":6969")
+	router.Run(":5555")
 }
